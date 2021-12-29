@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/App/vendor/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+	<h1>Bible Keeper</h1>
+	<section class="">
+		<div class="">
+
+			<div class="d-flex flex-row flex-wrap mb-4">
+				<div class="col-4">
+					<div class="">
+						<label for="">Book</label> <br>
+						<input type="text" name="" id="inputBook" value="Proverbs">
+					</div>
+					<div class="">
+						<label for="">Chapter</label> <br>
+						<input type="text" name="" id="inputChapter" value="1">
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="">
+						<label for="">Verse Start</label> <br>
+						<input type="text" name="" id="inputVerseStart" value="1">
+					</div>
+					<!-- <div class="">
+						<label for="">Verse End</label> <br>
+						<input type="text" name="" id="inputVerseEnd" value="3">
+					</div> -->
+				</div>
+			</div>
+
+
+			<div class="d-flex flex-row flex-wrap">
+				<div class="col-12">
+					<div class="form-floating mb-4">
+						<textarea class="form-control input-verse-add" placeholder="" id="inputVerseText">The proverbs of Solomon, son of David, king of Israel:</textarea>
+						<label for="inputVerseText">Add Verse Text</label>
+					</div>
+				</div>
+			</div>
+			
+			<div class="d-flex flex-row flex-wrap align-items-end">
+				<div class="col-4">
+					<div class="">
+						<label for="">Add Tag</label> <br>
+						<input type="text" name="" id="inputTag" value="test_tag">
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="">
+						<label for="">Add Bible Version</label> <br>
+						<input type="text" name="" id="inputVersion" value="ESV">
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="">
+						<button class="btn btn-primary" id="verseAddButton" type="submit">Add verses</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	<hr>
+
+
+	<section>
+		<div class="">
+
+			<div class="display-book">
+				<div class="display-book-name"> Proverbs </div>
+
+				<div class="display-verse">
+					<span class="displayChapter">1</span>:<span class="displayVerse">1</span>
+					<span class="displayVerseText">The proverbs of Solomon, son of David, king of Israel:</span>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+	</section>
+
+	
+</div>
+
+
+	<script src="/App/vendor/bootstrap.bundle.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

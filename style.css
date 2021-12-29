@@ -1,0 +1,9 @@
+
+body {
+	background-color: #999; 
+
+}
+#inputVerseText,
+.input-verse-add {
+	height: 100px;
+}
