@@ -1,9 +1,29 @@
 
 body {
-	background-color: #999; 
-
+	background-color: #ddd; 
 }
+
+input,
+textarea { width: 100% }
+
 #inputVerseText,
-.input-verse-add {
-	height: 100px;
+.input-verse-text { height: 58px; }
+
+.input-verse-number{ width:40px }
+
+[class^="container"] { background: #c8c8c8; }
+
+#addVerseContainer { overflow: hidden; transition: height 300ms 100ms; }
+
+.add-verse-title { cursor: pointer; }
+
+.toggle-section {
+	/* transition: transform 100ms 100ms; */
+	transform: scale(3, 1);
+	font-weight: 300; 
+	display:inline-block;
+}
+
+div.close .toggle-section { 
+	transform: scale(3, -1); 
 }
