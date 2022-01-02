@@ -12,27 +12,138 @@
 // 	console.log(document.querySelector(".input-verse-text").value)
 // 	console.log("tag", document.getElementById("inputTag").value)
 // 	console.log("ver", document.getElementById("inputVersion").value)
-	
-
-	
 // });
+	
+document.addEventListener('DOMContentLoaded', (e) => {
+	console.log(e.type);
+	
+	const pickerRef = [
+		[
+			{"Genesis": [
+				{"1": [ "1", "2", "3", "4", "5" ]},
+				{"2": [ "1", "2" ]},
+				{"3": [ "1", "2" ]}
+			]},
+			{"Proverbs": [
+				{"1": [ "1", "2", "3", "4", "5" ]},
+				{"2": [ "1", "2" ]},
+				{"3": [ "1", "2" ]}
+			]},
+			{"Psalms": [
+				{"1": [ "1", "2", "3", "4", "5" ]},
+				{"2": [ "1", "2" ]},
+				{"3": [ "1", "2" ]}
+			]}
+		],[
+			{"1 John": [
+				{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" ]},
+				{"2": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29" ]},
+				{"3": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" ]},
+				{"4": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" ]},
+				{"5": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" ]}
+			]},
+			{"2 John": [
+				{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" ]}
+			]},
+			{"3 John": [
+				{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ]}
+			]},
+			{"Jude": [
+				{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" ]}
+			]}	
+		]	
+	]
+		
+	var OTArray = pickerRef[0];
+	var NTArray = pickerRef[1];
+	var templateSection, templateBook, templateChapter, templateVerse;
+	var bookIndex, chIndex, vsIndex;
+	
+	function buildVerseSelector(testamentArray){
+		var bookCount = testamentArray.length
+		templateSection = '';
+	
+		// books
+		for (bookIndex = 0; bookIndex < bookCount; bookIndex++) {	
+			var bookName = Object.keys(testamentArray[bookIndex])[0];
+			var chapterArray = testamentArray[bookIndex][bookName];
+			templateBook = '';
+			templateChapter = '';
+			
+			// console.log("book", bookName )
+	
+			// chapters
+			for (chIndex = 0; chIndex < chapterArray.length; chIndex++) {
+				var chapterNumber = Object.keys( chapterArray[chIndex])[0];
+				var verseArray = chapterArray[chIndex][chIndex+1];		
+				var verseLength = verseArray.length;
+				templateVerse = '';
+	
+				// verses
+				for (vsIndex = 0; vsIndex < verseLength; vsIndex++) {
+					templateVerse += `
+								<li class="verse"> ${verseArray[vsIndex]} </li>`;
+				}
+	
+				templateChapter += `
+						<li class="chapter">
+							<div class="chapter-name">chapter ${chapterNumber} </div>
+							<ul class="verses"> ${templateVerse} 
+							</ul>
+						</li>`;
+			}
+	
+			templateBook = `
+				<div class="book">
+					<h6 class="book-name">${bookName}</h6>
+					<ul class="chapters"> ${templateChapter} 
+					</ul>
+				</div>`;
+			
+				templateSection += templateBook;
+			}
+			// console.log(templateSection )
+			return templateSection;
+	
+	}
+		
+	var OTBooksEl = document.getElementById("ot-container").querySelector(".books");
+	OTBooksEl.insertAdjacentHTML('beforeend', buildVerseSelector(OTArray));
+	
+	var NTBooksEl = document.getElementById("nt-container").querySelector(".books");
+	NTBooksEl.insertAdjacentHTML('beforeend', buildVerseSelector(NTArray));
+	
 
-(function(){
-	var addVerseContainerEl = document.getElementById("addVerseContainer");
-	var sectionHeight;
-	document.getElementById("vToggle").addEventListener("click", function () {   
-	if (addVerseContainerEl.classList.contains('close')) {
+
+
+	(function(){
+		var addVerseContainerEl = document.getElementById("addVerseContainer");
+		var sectionHeight;
+			sectionHeight = addVerseContainerEl.scrollHeight;
+
+		document.getElementById("vToggle").addEventListener("click", function () {   
+			if (addVerseContainerEl.classList.contains('close')) {
+				console.log("opening");
+				addVerseContainerEl.style.height = sectionHeight + "px";
+				console.log(sectionHeight)
+				setTimeout(() => { addVerseContainerEl.style.height = "auto"; }, 350);
+			} else {
+				console.log("closing");
+				// save section scrollHeight
+				sectionHeight = addVerseContainerEl.scrollHeight;
+				// manually set height for transition to work
+				addVerseContainerEl.style.height = sectionHeight + "px";
+				setTimeout(() => { 
+					// now change height to close
+					// addVerseContainerEl.style.height = "3px";
+					addVerseContainerEl.style.height = "0";
+				});
+			} 
+			addVerseContainerEl.classList.toggle('close');
+			this.classList.toggle('close');
+		});
 		addVerseContainerEl.style.height = sectionHeight + "px";
-		setTimeout(() => { addVerseContainerEl.style.height = "auto"; }, 350);
-	} else {
-		sectionHeight = addVerseContainerEl.scrollHeight;
-		addVerseContainerEl.style.height = sectionHeight + "px";
-		addVerseContainerEl.style.height = this.scrollHeight + "px";
-	} 
-	addVerseContainerEl.classList.toggle('close');
-	});
-	addVerseContainerEl.style.height = sectionHeight + "px";
-}());
+	}());
 
 
 /* [
@@ -150,102 +261,5 @@
 	]}
 ] */
 
-const pickerRef = [
-	[
-		{"Genesis": [
-			{"1": [ "1", "2", "3", "4", "5" ]},
-			{"2": [ "1", "2" ]},
-			{"3": [ "1", "2" ]}
-		]},
-		{"Proverbs": [
-			{"1": [ "1", "2", "3", "4", "5" ]},
-			{"2": [ "1", "2" ]},
-			{"3": [ "1", "2" ]}
-		]},
-		{"Psalms": [
-			{"1": [ "1", "2", "3", "4", "5" ]},
-			{"2": [ "1", "2" ]},
-			{"3": [ "1", "2" ]}
-		]}
-	],[
-		{"1 John": [
-			{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" ]},
-			{"2": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29" ]},
-			{"3": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" ]},
-			{"4": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" ]},
-			{"5": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" ]}
-		]},
-		{"2 John": [
-			{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" ]}
-		]},
-		{"3 John": [
-			{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" ]}
-		]},
-		{"Jude": [
-			{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" ]}
-		]}	
-	]	
-]
 
-
-
-var OTArray = pickerRef[0];
-var NTArray = pickerRef[1];
-var templateSection, templateBook, templateChapter, templateVerse;
-var bookIndex, chIndex, vsIndex;
-
-function buildVerseSelector(testamentArray){
-	var bookCount = testamentArray.length
-	templateSection = '';
-
-	// books
-	for (bookIndex = 0; bookIndex < bookCount; bookIndex++) {	
-		var bookName = Object.keys(testamentArray[bookIndex])[0];
-		var chapterArray = testamentArray[bookIndex][bookName];
-		templateBook = '';
-		templateChapter = '';
-		
-		// console.log("book", bookName )
-
-		// chapters
-		for (chIndex = 0; chIndex < chapterArray.length; chIndex++) {
-			var chapterNumber = Object.keys( chapterArray[chIndex])[0];
-			var verseArray = chapterArray[chIndex][chIndex+1];		
-			var verseLength = verseArray.length;
-			templateVerse = '';
-
-			// verses
-			for (vsIndex = 0; vsIndex < verseLength; vsIndex++) {
-				templateVerse += `
-							<li class="verse"> ${verseArray[vsIndex]} </li>`;
-			}
-
-			templateChapter += `
-					<li class="chapter">
-						<div class="chapter-name">chapter ${chapterNumber} </div>
-						<ul class="verses"> ${templateVerse} 
-						</ul>
-					</li>`;
-		}
-
-		templateBook = `
-			<div class="book">
-				<h6 class="book-name">${bookName}</h6>
-				<ul class="chapters"> ${templateChapter} 
-				</ul>
-			</div>`;
-		
-			templateSection += templateBook;
-		}
-		console.log(templateSection )
-		return templateSection;
-
-}
-
-
-var OTBooksEl = document.getElementById("ot-container").querySelector(".books");
-OTBooksEl.insertAdjacentHTML('beforeend', buildVerseSelector(OTArray));
-
-var NTBooksEl = document.getElementById("nt-container").querySelector(".books");
-NTBooksEl.insertAdjacentHTML('beforeend', buildVerseSelector(NTArray));
-
+})
