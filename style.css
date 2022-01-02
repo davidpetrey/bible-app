@@ -4,14 +4,14 @@ body {
 }
 
 
-.choose-verse-container li {display: inline;}
 
 
 
 
 
 
-[class^="container"] { background: #c8c8c8; }
+
+[class^="container"] { background: #e4e4e4; }
 
 #addVerseContainer { overflow: hidden; transition: height 300ms 100ms; }
 
@@ -28,3 +28,19 @@ body {
 .close .toggle-section { 
 	transform: scale(3, -1); 
 }
+
+
+.books li.chapter { display: inline; }
+.books li.verse { font-size: 14px; border:1px solid #aaa; display: inline-block; width: 34px; text-align: center }
+.books li.verse:hover{background: #333; color: #fff; cursor: pointer; }
+
+
+.testament-container .books {display: none;}
+
+/* #ot-container .books {display: block;} */
+/* #nt-container .books {display: block;} */
+
+
+.testament-container .books .book .chapters {display: none;}
+/* .testament-container .books .book:nth-child(2) .chapters{display: block;} */
+
