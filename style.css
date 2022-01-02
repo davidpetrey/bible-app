@@ -3,19 +3,20 @@ body {
 	background-color: #ddd; 
 }
 
-input,
-textarea { width: 100% }
 
-#inputVerseText,
-.input-verse-text { height: 58px; }
+.choose-verse-container li {display: inline;}
 
-.input-verse-number{ width:40px }
+
+
+
+
 
 [class^="container"] { background: #c8c8c8; }
 
 #addVerseContainer { overflow: hidden; transition: height 300ms 100ms; }
 
 .add-verse-title { cursor: pointer; }
+
 
 .toggle-section {
 	/* transition: transform 100ms 100ms; */

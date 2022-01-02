@@ -16,85 +16,193 @@
 	<h1>Bible Keeper</h1>
 	<section class="">
 		<div class="" id="addVerseContainer">
-			<h3 id="vToggle" class="add-verse-title">Add a verse 
+			<h3 id="vToggle" class="add-verse-title">Choose some verses 
 				<span class="toggle-section">&nbsp; V</span> 
 			</h3> 
-			<div class="d-flex flex-row flex-wrap mb-4">
-				<div class="col-4">
-					<div class="pe-4">
-						<label for="">Book</label> <br>
-						<input class="" type="text" name="" id="inputBook" value="Proverbs">
+
+
+			<div class="choose-verse-container col-10 p-3">
+
+				<div id="ot-container">
+					<h4>Old Testament</h4>
+					<div class="books">
+						
+						
+					</div>
+				</div>
+
+				<div id="nt-container">
+					<h4>New Testament</h4>
+
+					<div class="books">
+						
 					</div>
 
-				</div>
-				<div class="col-4">
-					<div class="pe-4">
-						<label for="">Chapter</label> <br>
-						<input class="" type="text" name="" id="inputChapter" value="1">
-					</div>
 				</div>
 			</div>
 
-
-			<div class="mb-4 ps-2 ps-sm-4">
 			
-				<div class="verse-rows" id="verseRows">
-					<div class="verse-row d-flex flex-row flex-wrap mb-4">
-						<div class="col-auto pe-2 pe-sm-4">
-							<div class="">
-								<label for="">Verse</label> <br>
-								<input class="input-verse-number" type="text" name="" id="" value="1">
-							</div>
+			<!-- <div class="choose-verse-container col-10 p-3">
+
+				<div id="ot-container">
+					<h4>Old Testament</h4>
+					<div class="books">
+						<div class="book">
+							<h4>Proverbs</h4>
+							<ul>
+								<li class="chapter">
+									chapter 1
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+										<li>5</li>
+										<li>6</li>
+										<li>7</li>
+										<li>8</li>
+										<li>9</li>
+										<li>10</li>
+										<li>11</li>
+										<li>12</li>
+										<li>13</li>
+										<li>14</li>
+										<li>15</li>
+										<li>16</li>
+										<li>17</li>
+										<li>18</li>
+										<li>19</li>
+										<li>20</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+										<li>4</li>
+									</ul>
+								</li>
+							</ul>
 						</div>
-						<div class="col col-sm-8">
-							<div class="">
-								<label for="">Verse Text</label>
-								<textarea class=" input-verse-text" placeholder="" id="">The proverbs of Solomon, son of David, king of Israel:</textarea>
-							</div>
+					</div>
+				</div>
+
+				<div id="nt-container">
+					<h4>New Testament</h4>
+
+					<div class="books">
+						<div class="book">
+							<h4>1 John</h4>
+							<ul>
+								<li class="chapter">
+									chapter 1
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+									</ul>
+								</li>
+							</ul>
 						</div>
-						<div class="col-auto" style="flex-basis:75px"></div>
+						<div class="book">
+							<h4>2 John</h4>
+							<ul>
+								<li class="chapter">
+									chapter 1
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+									</ul>
+								</li>
+								<li class="chapter">
+									chapter 2
+									<ul>
+										<li>1</li>
+										<li>2</li>
+										<li>3</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
 					</div>
 
 				</div>
 
-
-				<div class="d-flex">
-					<div class="col-auto pe-2 pe-sm-4" > 
-						<div style="width:40px"></div> 
-					</div>
-					<div class="col col-sm-8 d-flex justify-content-end">
-						<button class="btn btn-primary" id="addAnotherVerseButton">Add another verse</button>
-					</div>
-					<div class="col-auto" style="flex-basis:75px"></div>
-				</div>
-			</div>
-
-			<div class="d-flex flex-row flex-wrap align-items-end">
-				<div class="col-4">
-					<div class="pe-4 mb-4">
-						<label for="">Add Tag</label> <br>
-						<input class="" type="text" name="" id="inputTag" value="test_tag">
-					</div>
-				</div>
-				<div class="col-4">
-					<div class="pe-4 mb-4">
-						<label for="">Add Bible Version</label> <br>
-						<input class="" type="text" name="" id="inputVersion" value="ESV">
-					</div>
-				</div>
-				
-				<div class="d-flex col-12 py-3">
-					<div class="col-auto pe-2 pe-sm-4" > 
-						<div style="width:40px"></div> 
-					</div>
-					<div class="col col-sm-8 d-flex justify-content-end">
-						<button class="btn btn-primary" id="saveButton" type="submit">Save Verses</button>
-					</div>
-					<div class="col-auto" style="flex-basis:75px"></div>
-				</div>
-			</div>
-
-
+			</div> -->
 		</div>
 	</section>
 	
@@ -138,3 +246,29 @@
 	<script src="app.js"></script>
 </body>
 </html>
+
+
+
+<!-- 
+<div class="book">
+	<h4 class="book-name"></h4>
+	<ul class="chapters">
+		<li class="chapter">
+			<div class="chapter-name">chapter <span> </span> </div>
+			<ul class="verses">
+				<li class="verse"></li>
+				<li class="verse"></li>
+				<li class="verse"></li>
+			</ul>
+		</li>
+		<li class="chapter">
+			<div class="chapter-name">chapter <span> </span> </div>
+			<ul>
+				<li class="verse"></li>
+				<li class="verse"></li>
+				<li class="verse"></li>
+			</ul>
+		</li>
+	</ul>
+</div> 
+-->
