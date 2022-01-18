@@ -19,7 +19,6 @@ body {
 
 
 .toggle-section {
-	/* transition: transform 100ms 100ms; */
 	transform: scale(3, 1);
 	font-weight: 300; 
 	display:inline-block;
@@ -33,6 +32,12 @@ body {
 .books li.chapter { display: inline; }
 .books li.verse { font-size: 14px; border:1px solid #aaa; display: inline-block; width: 34px; text-align: center }
 .books li.verse:hover{background: #333; color: #fff; cursor: pointer; }
+
+
+.books li.verse.selected:hover,
+.selected { background: rgb(255, 92, 92); color: #212529; }
+/* .selected + .selected { background: rgb(255, 92, 92); }
+.selected ~ :not(.selected) ~ .selected { background: rgb(97, 97, 97);!important; } */
 
 
 .testament-container .books {display: none;}

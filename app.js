@@ -322,12 +322,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				// verses
 				for (vsIndex = 0; vsIndex < verseLength; vsIndex++) {
 					templateVerse += `
-								<li class="verse"> ${verseArray[vsIndex]} </li>`;
+								<li class="verse" data-verse-number="${verseArray[vsIndex]}"> ${verseArray[vsIndex]} </li>`;
 				}
 	
 				templateChapter += `
 						<li class="chapter">
-							<div class="chapter-name">chapter ${chapterNumber} </div>
+							<div class="chapter-name" data-chapter-number="${chapterNumber}">chapter ${chapterNumber} </div>
 							<ul class="verses"> ${templateVerse} 
 							</ul>
 						</li>`;
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		console.log(selectorClasses, els);
 		
 		els.forEach((el) => {
-			el.addEventListener("click", function () {   
+			el.addEventListener("click", function () { 
 				var containerDiv = this.nextElementSibling;
 				var containerDivDisplay = containerDiv.style.display;			
 				
@@ -405,6 +405,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 						el.classList.remove("active");
 						el.nextElementSibling.style.display = "none";
 					});
+				}else{
+					// go to top when opening another book 
+					window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 				}
 
 				els.forEach((el) => {
@@ -431,6 +434,31 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 
+	var verse = document.querySelectorAll("#addVerseContainer .verse");
+
+	verse.forEach((vs) => {
+		vs.addEventListener("click", function () { 
+			if(vs.classList.contains("selected")){
+				vs.classList.remove("selected");
+			}else{
+				vs.classList.add("selected");
+				console.log(vs.dataset.verseNumber);
+				
+			}
+
+			// console.log( document.querySelectorAll("#addVerseContainer .verse.selected").length)
+			if(document.querySelectorAll("#addVerseContainer .verse.selected").length == 0) { 
+				// set button disabled 
+				// #saveButton 
+			}
+		});
+	})
+
+	var saveButton = document.getElementById("saveButton");
+	saveButton.addEventListener("click", function () { 
+
+	});
 
 
 })
+
