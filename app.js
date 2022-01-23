@@ -326,8 +326,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				}
 	
 				templateChapter += `
-						<li class="chapter">
-							<div class="chapter-name" data-chapter-number="${chapterNumber}">chapter ${chapterNumber} </div>
+						<li class="chapter mb-2">
+							<div class="chapter-name mb-1" data-chapter-number="${chapterNumber}">Chapter ${chapterNumber} </div>
 							<ul class="verses"> ${templateVerse} 
 							</ul>
 						</li>`;
