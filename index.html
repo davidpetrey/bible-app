@@ -52,30 +52,76 @@
 
 
 <!--  -->
+	<header>
+		<h1 class="mb-4 me-3">app</h1>
 
-	<h1 class="mb-4">Bible Keeper</h1>
+		<div class="mx-3">
+			<select class="form-select" id="tagPicker">
+				<option value="">tagPicker</option>
+				<option value="love">love</option>
+				<option value="love">love</option>
+				<option value="love">love</option>
+			</select>
+		</div>
+
+	</header> 	
+
+
 	<section class="">
-		<div class="" id="addVerseXContainer">
+		<div class="" id="">
 			<h3 id="vToggle" class="add-verse-title">Choose some verses 
 				<span class="toggle-section">&nbsp; V</span> 
 			</h3> 
 
-			<div class="choose-verse-container col-10" id="addVerseContainer" style="height: auto;">
+			<div class="choose-verse-container col-10" id="addVerse">
 				<div class="p-3">
-		
-					<div id="ot-container" class="testament-container">
-						<h4 class="testament-name">Old Testament</h4>
-						<div class="books"> </div>
-					</div>
-		
-		
-					<div id="nt-container" class="testament-container mb-4">
-						<h4 class="testament-name">New Testament</h4>
-						<div class="books"> </div>
-					</div>
-					<div>
-						<button class="btn btn-primary" id="saveButton">Save Verse</button>
-					</div>
+
+
+					<form id="verseForm" action="">
+						<div class="row">
+							<div class="col-auto">
+								<label for="" class="form-label">Tag</label>
+								<select class="form-select" id="addTag" required>
+									<option value="">Add Tag</option>
+									<option value="love">love</option>
+									<option value="love">love</option>
+									<option value="love">love</option>
+								</select>
+							</div>
+							<div class="col mb-3">
+								<label for="verseText" class="form-label">Text</label>
+								<textarea class="form-control" id="verseText" rows="3" required>text  </textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-auto mb-2">
+								<label class="form-label form-check-label" for="flexSwitchCheckDefault">OT/NT</label>
+								<div class="input-group custom-lg-switch">
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" role="switch" id="chooseTest">
+									</div>
+								</div>
+							</div>
+						
+							<div class="col mb-3">
+								<label for="chapterVerseRef" class="form-label">Book</label>
+								<div class="input-group mb-3">
+									<select class="form-select" id="testamentList" required></select>
+								</div>
+							</div>
+						
+							<div class="col">
+								<label for="chapterVerseRef" class="form-label">Chapter: Verse</label>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" id="chapterVerseRef" value="1:1-3" required>
+								</div>
+							</div>
+						</div>
+						<div>
+							<button class="btn btn-primary" id="saveButton">Save Verse</button>
+						</div>
+					</form>
+
 				</div>
 			</div>
 	
