@@ -117,25 +117,10 @@ const pickerRef = [
 document.addEventListener('DOMContentLoaded', (e) => {
 	console.log(e.type);
 
-
-
-		
 	const bookListArray = [
-		[
-			"Genesis",
-			"Proverbs",
-			"Psalms",
-		],
-		[
-			"1 John",
-			"2 John",
-			"3 John",
-			"Jude",
-		]	
+		[ "Genesis", "Proverbs", "Psalms", ],
+		[ "1 John", "2 John", "3 John", "Jude", ]	
 	]
-
-
-
 	/* 	
 	const pickerRef = [
 		[
@@ -173,17 +158,90 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			]}	
 		]	
 	] */
-	
-	var verseForm = document.getElementById("verseForm");
-	var testSwitch = document.getElementById("chooseTest");
-	var testamentList = document.getElementById("testamentList");
-	var chapterVerseRef = document.getElementById("chapterVerseRef")
-	var addTag = document.getElementById("addTag");
-	
-	console.log(bookListArray[0]);
-	
 
-	let setTestamentSelectFunction = () => {
+	var appState = {
+		currentTagID: 2
+	}
+
+	var taggedVersesObject = [
+		{
+			tagName: "love",
+			tagID: 1,
+			versesArray: [
+				{
+					verse: "text one", 
+					verseRef: "3:3"
+				},
+				{
+					verse: "text two", 
+					verseRef: "12:4-10"
+				},
+				{
+					verse: "text three", 
+					verseRef: "23:1-25"
+				}
+			]
+		},
+		{
+			tagName: "faith",
+			tagID: 2,
+			versesArray: [
+				{
+					verse: "xtext one", 
+					verseRef: "1:4"
+				},
+				{
+					verse: "xtext two", 
+					verseRef: "12:14-30"
+				},
+				{
+					verse: "xtext three", 
+					verseRef: "3:1-25"
+				}
+			]
+		},
+		{
+			tagName: "prayer",
+			tagID: 3,
+			versesArray: [
+				{
+					verse: "yxtext one", 
+					verseRef: "1:4"
+				},
+				{
+					verse: "yxtext two", 
+					verseRef: "12:14-30"
+				},
+				{
+					verse: "yxtext three", 
+					verseRef: "3:1-25"
+				}
+			]
+		}
+	]
+
+	
+	var verseForm = 			document.getElementById("verseForm");
+	var bibleSectionSwitch =	document.getElementById("chooseTest");
+	var testamentList = 		document.getElementById("testamentList");
+	var chapterVerseRef = 		document.getElementById("chapterVerseRef")
+	var tagPicker = 			document.getElementById("tagPicker");
+	var addTag = 				document.getElementById("addTag");
+	var addTagInput = 			document.getElementById("addTagInput");
+	var addTagBtn = 			document.getElementById("addTagBtn");
+	var cancelAddTag = 			document.getElementById("cancelAddTag");
+	var saveButton = 			document.getElementById("saveButton");
+
+	taggedVersesObject.forEach(tag => {
+		tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value"${tag.tagName}">${tag.tagName}</option>`;
+		addTag.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value"${tag.tagName}">${tag.tagName}</option>`;
+	});
+
+
+	// set tag to previously set tag
+	 tagPicker.selectedIndex = appState.currentTagID;
+
+	let setBooksFunction = () => {
 		let addBooksToSelect = testament => {
 			testamentList.innerHTML = "";
 			bookListArray[testament].forEach(book => {
@@ -192,7 +250,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			});
 		}
 
-		if (testSwitch.checked == true) {
+		if (bibleSectionSwitch.checked == true) {
 			console.log("checked")
 			addBooksToSelect(1)
 		} else {
@@ -200,10 +258,100 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			addBooksToSelect(0)
 		}
 	}
+	
+	setBooksFunction();
+	bibleSectionSwitch.addEventListener('change', setBooksFunction)
+	
 
-	setTestamentSelectFunction();
+	tagPicker.addEventListener('change', (e) => {
+		console.log(e.target.selectedOptions[0].dataset.tagId);
+		console.log(tagPicker.value);
+		appState.currentTagID = e.target.selectedOptions[0].dataset.tagId;		
+	})
 
-	testSwitch.addEventListener('change', setTestamentSelectFunction)
+	
+	
+	/* 
+	*	add new tag 
+	*/	
+
+	// initialize modal
+	var newTagModal = new bootstrap.Modal(document.getElementById('newTagModal'), {});
+
+
+
+	addTag.addEventListener('change', () => {
+		// console.log(addTag.selectedIndex);
+		if(addTag.selectedIndex == 1) {
+			newTagModal.show();
+		}
+	})
+
+
+
+	// focus on input when modal shown
+	document.getElementById('newTagModal').addEventListener('shown.bs.modal', function () {
+		addTagInput.focus()
+	})
+	document.getElementById('newTagModal').addEventListener('hidden.bs.modal', function () {
+		addTagInput.value = '';
+	})
+
+
+	addTagInput.addEventListener("keyup", (e) => {
+		if (e.target.value.length) {
+			addTagBtn.disabled = false;
+		} else {
+			addTagBtn.disabled = true;
+		}
+	})
+
+	addTagBtn.addEventListener("click", () => {
+		// add to array   
+		addNewTagToArray(addTagInput.value);
+		newTagModal.hide();
+	})
+
+	cancelAddTag.addEventListener("click", () => { addTag.selectedIndex = 0 });
+
+
+	function addNewTagToArray(newTagName) {
+		console.log(newTagName);
+		const tempArray = taggedVersesObject.map(tag => tag.tagID);
+		console.log(tempArray)
+		
+		var newTagID = Math.max(...tempArray) +1;
+		console.log(newTagID)
+		
+		var newArrayIndexObject = {
+			tagName: newTagName,
+			tagID: newTagID,
+			versesArray: []
+		}
+
+
+		taggedVersesObject.push(newArrayIndexObject);
+		console.log(taggedVersesObject);
+		
+
+		// remove all dynamically added tag options from selects
+		document.querySelectorAll(".dynamic-select-option").forEach((option) => {
+			  option.remove();
+		});
+
+		// add tags back to selects with the new tag
+		taggedVersesObject.forEach(tag => {
+			addTag.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`;
+			tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`;
+		});
+
+		// set tag select to newly added tag
+
+		// console.log(addTag.length);
+		addTag.selectedIndex = (addTag.length - 1)
+	}
+
+
 
 
 	/* 	(function(){
@@ -239,22 +387,31 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 
-
-	
-
-	var saveButton = document.getElementById("saveButton");
 	saveButton.addEventListener("click", function (e) { 
-			console.log(verseForm.checkValidity());
-			
-		
-		if (verseForm.checkValidity() && document.getElementById("addTag").selectedIndex > 0) {
+			// console.log(verseForm.checkValidity());
+		if (verseForm.checkValidity() && addTag.selectedIndex > 1) {
 			e.preventDefault();
 			
 			let ref = testamentList.value + " " + chapterVerseRef.value;
 			
+
+			console.log(addTag.selectedOptions[0].dataset.tagId);
 			console.log(addTag.value);
 			console.log(verseText.value);
 			console.log(ref);		
+			console.log(taggedVersesObject);		
+		
+
+			// -----
+			// -----
+			// ----- ADDING TO taggedVersesObject ARRAY
+			// -----
+			// -----
+			// -----
+			// -----
+
+			// taggedVersesObject.push();
+		
 		}
 	});
 

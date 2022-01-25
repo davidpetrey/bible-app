@@ -6,191 +6,185 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	
+
 	<!-- Bootstrap v5.1.3  -->
-	<link rel="stylesheet" href="/vendor/bootstrap.min.css">  
+	<link rel="stylesheet" href="/vendor/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<div class="container-md py-2 py-sm-4" id="xtop">
-
-<!--  -->
+	<div class="container-md py-2 py-sm-4" id="xtop">
 
 
 
 
 
+		<header>
+			<h1 class="mb-4 me-3">app</h1>
+
+			<div class="mx-3">
+				<select class="form-select" id="tagPicker">
+					<option value="">tagPicker</option>
+				</select>
+			</div>
+
+		</header>
 
 
+		<section class="">
+			<div class="" id="">
+				<h3 id="vToggle" class="add-verse-title">Choose some verses
+					<span class="toggle-section">&nbsp; V</span>
+				</h3>
 
-<!-- 
-	This is to start the simple version fo the app where there is only tags and sections added with verse text and reference.
-
-			Ex. verse & reference
-
-			Blessed is the one
-				who does not walk in step with the wicked
-			or stand in the way that sinners take
-				or sit in the company of mockers,
-			but whose delight is in the law of the Lord,
-				and who meditates on his law day and night.
-			That person is like a tree planted by streams of water,
-				which yields its fruit in season
-			and whose leaf does not wither—
-				whatever they do prospers.
-										Psalm 1:1-3
-
-	This is a single entry and each entry will have a tag associated to it. Here a tag will function more like a category. 
- -->
+				<div class="choose-verse-container col-10" id="addVerse">
+					<div class="p-3">
 
 
+						<form id="verseForm" action="">
+							<div class="row">
+								<div class="col-auto">
+									<label for="" class="form-label">Tag</label>
+									<select class="form-select" id="addTag" required>
+										<option value="">Add Tag</option>
+										<option value="New Tag">[New Tag]</option>
 
-
-
-
-
-
-<!--  -->
-	<header>
-		<h1 class="mb-4 me-3">app</h1>
-
-		<div class="mx-3">
-			<select class="form-select" id="tagPicker">
-				<option value="">tagPicker</option>
-				<option value="love">love</option>
-				<option value="love">love</option>
-				<option value="love">love</option>
-			</select>
-		</div>
-
-	</header> 	
-
-
-	<section class="">
-		<div class="" id="">
-			<h3 id="vToggle" class="add-verse-title">Choose some verses 
-				<span class="toggle-section">&nbsp; V</span> 
-			</h3> 
-
-			<div class="choose-verse-container col-10" id="addVerse">
-				<div class="p-3">
-
-
-					<form id="verseForm" action="">
-						<div class="row">
-							<div class="col-auto">
-								<label for="" class="form-label">Tag</label>
-								<select class="form-select" id="addTag" required>
-									<option value="">Add Tag</option>
-									<option value="love">love</option>
-									<option value="love">love</option>
-									<option value="love">love</option>
-								</select>
+									</select>
+								</div>
+								<div class="col mb-3">
+									<label for="verseText" class="form-label">Text</label>
+									<textarea class="form-control" id="verseText" rows="3" required>text  </textarea>
+								</div>
 							</div>
-							<div class="col mb-3">
-								<label for="verseText" class="form-label">Text</label>
-								<textarea class="form-control" id="verseText" rows="3" required>text  </textarea>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-auto mb-2">
-								<label class="form-label form-check-label" for="flexSwitchCheckDefault">OT/NT</label>
-								<div class="input-group custom-lg-switch">
-									<div class="form-check form-switch">
-										<input class="form-check-input" type="checkbox" role="switch" id="chooseTest">
+							<div class="row">
+								<div class="col-auto mb-2">
+									<label class="form-label form-check-label" for="flexSwitchCheckDefault">OT/NT</label>
+									<div class="input-group custom-lg-switch">
+										<div class="form-check form-switch">
+											<input class="form-check-input" type="checkbox" role="switch" id="chooseTest">
+										</div>
+									</div>
+								</div>
+
+								<div class="col mb-3">
+									<label for="chapterVerseRef" class="form-label">Book</label>
+									<div class="input-group mb-3">
+										<select class="form-select" id="testamentList" required></select>
+									</div>
+								</div>
+
+								<div class="col">
+									<label for="chapterVerseRef" class="form-label">Chapter: Verse</label>
+									<div class="input-group mb-3">
+										<input type="text" class="form-control" id="chapterVerseRef" value="1:1-3" required>
 									</div>
 								</div>
 							</div>
-						
-							<div class="col mb-3">
-								<label for="chapterVerseRef" class="form-label">Book</label>
-								<div class="input-group mb-3">
-									<select class="form-select" id="testamentList" required></select>
-								</div>
+							<div>
+								<button class="btn btn-primary" id="saveButton">Save Verse</button>
 							</div>
-						
-							<div class="col">
-								<label for="chapterVerseRef" class="form-label">Chapter: Verse</label>
-								<div class="input-group mb-3">
-									<input type="text" class="form-control" id="chapterVerseRef" value="1:1-3" required>
-								</div>
-							</div>
-						</div>
-						<div>
-							<button class="btn btn-primary" id="saveButton">Save Verse</button>
-						</div>
-					</form>
+						</form>
 
+					</div>
 				</div>
+
 			</div>
-	
-		</div>
-	</section>
-	
-	
-	<hr>
+		</section>
 
 
-	<section>
-		<div class="">
+		<hr>
 
-			<div class="display-book">
-				<div class="display-book-name"> Proverbs </div>
 
-				<div class="display-verse">
-					<span class="displayChapter">1</span>:<span class="displayVerse">1</span>
-					<span class="displayVerseText">The proverbs of Solomon, son of David, king of Israel:</span>
+		<section>
+			<div class="">
+
+				<div class="display-book">
+					<div class="display-book-name"> Proverbs </div>
+
+					<div class="display-verse">
+						<span class="displayChapter">1</span>:<span class="displayVerse">1</span>
+						<span class="displayVerseText">The proverbs of Solomon, son of David, king of Israel:</span>
+					</div>
+					<div class="display-verse">
+						<span class="displayChapter">1</span>:<span class="displayVerse">2</span>
+						<span class="displayVerseText">To know wisdom and instruction, to understand words of insight,</span>
+					</div>
+					<div class="display-verse">
+						<span class="displayChapter">1</span>:<span class="displayVerse">3</span>
+						<span class="displayVerseText">to receive instruction in wise dealing, in righteousness, justice, and equity;</span>
+					</div>
 				</div>
-				<div class="display-verse">
-					<span class="displayChapter">1</span>:<span class="displayVerse">2</span>
-					<span class="displayVerseText">To know wisdom and instruction, to understand words of insight,</span>
-				</div>
-				<div class="display-verse">
-					<span class="displayChapter">1</span>:<span class="displayVerse">3</span>
-					<span class="displayVerseText">to receive instruction in wise dealing, in righteousness, justice, and equity;</span>
-				</div>
+
+
 			</div>
-			
-			
-		</div>
-	</section>
+		</section>
 
-	
-</div>
+
+	</div>
 	<script>
 		var JB = {
-			
+
 		}
+
 	</script>
 
 	<script src="/vendor/bootstrap.bundle.min.js"></script>
 	<script src="app.js"></script>
+
+
+
+	<!-- new tag modal -->
+		<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTagModal"> Launch demo modal </button> -->
+
+	<!-- Modal -->
+	<div class="modal fade new-tag-modal" id="newTagModal" tabindex="-1" aria-labelledby="newTagModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content pt-1">
+
+				<div class="modal-header"> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> </div>
+
+				<div class="row m-0 me-4 justify-content-end">
+					<div class="modal-body col-auto">
+						<p class="modal-title mb-1" id="newTagModalLabel">Add new tag</p>
+						<input id="addTagInput" type="text">
+					</div>
+
+					<div class="modal-footer col-auto align-items-end">
+						<button id="cancelAddTag" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						<button id="addTagBtn" type="button" class="btn btn-primary" disabled>Add tag</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- 
+	<div class="book">
+		<h4 class="book-name"></h4>
+		<ul class="chapters">
+			<li class="chapter">
+				<div class="chapter-name">chapter <span> </span> </div>
+				<ul class="verses">
+					<li class="verse"></li>
+					<li class="verse"></li>
+					<li class="verse"></li>
+				</ul>
+			</li>
+			<li class="chapter">
+				<div class="chapter-name">chapter <span> </span> </div>
+				<ul>
+					<li class="verse"></li>
+					<li class="verse"></li>
+					<li class="verse"></li>
+				</ul>
+			</li>
+		</ul>
+	</div> 
+	-->
+
+
 </body>
+
 </html>
 
-
-
-<!-- 
-<div class="book">
-	<h4 class="book-name"></h4>
-	<ul class="chapters">
-		<li class="chapter">
-			<div class="chapter-name">chapter <span> </span> </div>
-			<ul class="verses">
-				<li class="verse"></li>
-				<li class="verse"></li>
-				<li class="verse"></li>
-			</ul>
-		</li>
-		<li class="chapter">
-			<div class="chapter-name">chapter <span> </span> </div>
-			<ul>
-				<li class="verse"></li>
-				<li class="verse"></li>
-				<li class="verse"></li>
-			</ul>
-		</li>
-	</ul>
-</div> 
--->
