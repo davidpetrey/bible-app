@@ -169,16 +169,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			tagID: 1,
 			versesArray: [
 				{
-					verse: "text one", 
-					verseRef: "3:3"
+					verseRefKey: "3:3",
+					verseKey: "text one"
 				},
 				{
-					verse: "text two", 
-					verseRef: "12:4-10"
+					verseRefKey: "12:4-10",
+					verseKey: "text two"
 				},
 				{
-					verse: "text three", 
-					verseRef: "23:1-25"
+					verseRefKey: "23:1-25",
+					verseKey: "text three"
 				}
 			]
 		},
@@ -187,16 +187,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			tagID: 2,
 			versesArray: [
 				{
-					verse: "xtext one", 
-					verseRef: "1:4"
+					verseRefKey: "1:4",
+					verseKey: "xtext one"
 				},
 				{
-					verse: "xtext two", 
-					verseRef: "12:14-30"
+					verseRefKey: "12:14-30",
+					verseKey: "xtext two"
 				},
 				{
-					verse: "xtext three", 
-					verseRef: "3:1-25"
+					verseRefKey: "3:1-25",
+					verseKey: "xtext three"
 				}
 			]
 		},
@@ -205,16 +205,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			tagID: 3,
 			versesArray: [
 				{
-					verse: "yxtext one", 
-					verseRef: "1:4"
+					verseRefKey: "1:4",
+					verseKey: "yxtext one"
 				},
 				{
-					verse: "yxtext two", 
-					verseRef: "12:14-30"
+					verseRefKey: "12:14-30",
+					verseKey: "yxtext two"
 				},
 				{
-					verse: "yxtext three", 
-					verseRef: "3:1-25"
+					verseRefKey: "3:1-25",
+					verseKey: "yxtext three"
 				}
 			]
 		}
@@ -397,20 +397,26 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 			console.log(addTag.selectedOptions[0].dataset.tagId);
 			console.log(addTag.value);
+
 			console.log(verseText.value);
 			console.log(ref);		
-			console.log(taggedVersesObject);		
+				
 		
+			taggedVersesObject.forEach(function (tagObject) {
+				if(tagObject.tagID == addTag.selectedOptions[0].dataset.tagId){
+					console.log(tagObject);
+					let verseTextRef = {
+						verseRefKey: ref,
+						verseKey: verseText.value
+					}
+					
+					tagObject.versesArray.push(verseTextRef);
 
-			// -----
-			// -----
-			// ----- ADDING TO taggedVersesObject ARRAY
-			// -----
-			// -----
-			// -----
-			// -----
+				}
+			})
+			console.log(taggedVersesObject);	
 
-			// taggedVersesObject.push();
+			
 		
 		}
 	});
