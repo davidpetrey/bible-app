@@ -13,19 +13,20 @@ header > * {display: inline-block;}
 
 [class^="container"] { background: #e4e4e4; }
 
-#addVerseContainer { overflow: hidden; transition: height 300ms 100ms; }
+#addVerseContainer { height: 350px; overflow: hidden; transition: height 300ms 100ms; }
+#addVerseContainer.close { height: 40px; }
 
 .add-verse-title { cursor: pointer; }
 
 
 .toggle-section {
-	transform: scale(3, 1);
+	transform: scale(2.5, 1);
 	font-weight: 300; 
 	display:inline-block;
 }
 
 .close .toggle-section { 
-	transform: scale(3, -1); 
+	transform: scale(2.5, -1); 
 }
 
 

@@ -354,36 +354,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 
-	/* 	(function(){
+		(function(){
 			var addVerseContainerEl = document.getElementById("addVerseContainer");
-			var sectionHeight;
-				sectionHeight = addVerseContainerEl.scrollHeight;
 
 			document.getElementById("vToggle").addEventListener("click", function () {   
-				if (addVerseContainerEl.classList.contains('close')) {
-					console.log("opening");
-					addVerseContainerEl.style.height = sectionHeight + "px";
-					console.log(sectionHeight)
-					setTimeout(() => { addVerseContainerEl.style.height = "auto"; }, 350);
-				} else {
-					console.log("closing");
-					// save section scrollHeight
-					sectionHeight = addVerseContainerEl.scrollHeight;
-					// manually set height for transition to work
-					addVerseContainerEl.style.height = sectionHeight + "px";
-					setTimeout(() => { 
-						// now change height to close
-						// addVerseContainerEl.style.height = "3px";
-						addVerseContainerEl.style.height = "0";
-					});
-				} 
 				addVerseContainerEl.classList.toggle('close');
 				this.classList.toggle('close');
 			});
-			addVerseContainerEl.style.height = sectionHeight + "px";
-			addVerseContainerEl.style.height = "auto";
 		}()); 
-	*/
+	
 
 
 
@@ -410,13 +389,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
 						verseKey: verseText.value
 					}
 					
+					// update array
 					tagObject.versesArray.push(verseTextRef);
 
 				}
-			})
-			console.log(taggedVersesObject);	
+			});
 
-			
+
+			console.log(taggedVersesObject);	
+			localStorage.setItem('taggedVersesObjectKey', JSON.stringify(taggedVersesObject));
 		
 		}
 	});
