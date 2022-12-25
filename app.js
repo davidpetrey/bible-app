@@ -115,11 +115,11 @@ const pickerRef = [
 ]
 
 document.addEventListener('DOMContentLoaded', (e) => {
-	console.log(e.type);
+	console.log(e.type)
 
 	const bookListArray = [
-		[ "Genesis", "Proverbs", "Psalms", ],
-		[ "1 John", "2 John", "3 John", "Jude", ]
+		['Genesis', 'Proverbs', 'Psalms'],
+		['1 John', '2 John', '3 John', 'Jude'],
 	]
 	/*
 	const pickerRef = [
@@ -160,70 +160,70 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	] */
 
 	var appState = {
-		currentTagID: 2
+		currentTagID: 2,
 	}
 
 	var taggedVersesObject = [
 		{
-			tagName: "love",
+			tagName: 'love',
 			tagID: 1,
 			versesArray: [
 				{
-					verseRefKey: "3:3",
-					verseKey: "text one"
+					verseRefKey: '3:3',
+					verseKey: 'text one',
 				},
 				{
-					verseRefKey: "12:4-10",
-					verseKey: "text two"
+					verseRefKey: '12:4-10',
+					verseKey: 'text two',
 				},
 				{
-					verseRefKey: "23:1-25",
-					verseKey: "text three"
-				}
-			]
+					verseRefKey: '23:1-25',
+					verseKey: 'text three',
+				},
+			],
 		},
 		{
-			tagName: "faith",
+			tagName: 'faith',
 			tagID: 2,
 			versesArray: [
 				{
-					verseRefKey: "1:4",
-					verseKey: "xtext one"
+					verseRefKey: '1:4',
+					verseKey: 'xtext one',
 				},
 				{
-					verseRefKey: "12:14-30",
-					verseKey: "xtext two"
+					verseRefKey: '12:14-30',
+					verseKey: 'xtext two',
 				},
 				{
-					verseRefKey: "3:1-25",
-					verseKey: "xtext three"
-				}
-			]
+					verseRefKey: '3:1-25',
+					verseKey: 'xtext three',
+				},
+			],
 		},
 		{
-			tagName: "prayer",
+			tagName: 'prayer',
 			tagID: 3,
 			versesArray: [
 				{
-					verseRefKey: "1:4",
-					verseKey: "yxtext one"
+					verseRefKey: '1:4',
+					verseKey: 'yxtext one',
 				},
 				{
-					verseRefKey: "12:14-30",
-					verseKey: "yxtext two"
+					verseRefKey: '12:14-30',
+					verseKey: 'yxtext two',
 				},
 				{
-					verseRefKey: "3:1-25",
-					verseKey: "yxtext three"
-				}
-			]
-		}
+					verseRefKey: '3:1-25',
+					verseKey: 'yxtext three',
+				},
+			],
+		},
 	]
 
 
 	var verseForm = 					document.getElementById("verseForm");
 	var bibleSectionSwitch =	document.getElementById("chooseTest");
-	var testamentList = 			document.getElementById("testamentList");
+	var testamentBookList = 			document.getElementById("testamentBookList");
 	var chapterVerseRef = 		document.getElementById("chapterVerseRef")
 	var tagPicker = 					document.getElementById("tagPicker");
 	var addTag = 							document.getElementById("addTag");
@@ -239,15 +239,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 	// set tag to previously set tag
-	 tagPicker.selectedIndex = appState.currentTagID;
+	tagPicker.selectedIndex = appState.currentTagID
 
 	let setBooksFunction = () => {
-		let addBooksToSelect = testament => {
-			testamentList.innerHTML = "";
-			bookListArray[testament].forEach(book => {
-				testamentList.innerHTML += `<option value"${book}">${book}</option>`;
-
-			});
+		let addBooksToSelect = (testament) => {
+			testamentBookList.innerHTML = ''
+			bookListArray[testament].forEach((book) => {
+				testamentBookList.innerHTML += `<option value"${book}">${book}</option>`
+			})
 		}
 
 		if (bibleSectionSwitch.checked == true) {
@@ -259,21 +258,18 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		}
 	}
 
-	setBooksFunction();
+	setBooksFunction()
 	bibleSectionSwitch.addEventListener('change', setBooksFunction)
 
-
 	tagPicker.addEventListener('change', (e) => {
-		console.log(e.target.selectedOptions[0].dataset.tagId);
-		console.log(tagPicker.value);
-		appState.currentTagID = e.target.selectedOptions[0].dataset.tagId;
+		console.log(e.target.selectedOptions[0].dataset.tagId)
+		console.log(tagPicker.value)
+		appState.currentTagID = e.target.selectedOptions[0].dataset.tagId
 	})
 
-
-
 	/*
-	*	add new tag
-	*/
+	 *	add new tag
+	 */
 
 	// initialize modal
 	var newTagModal = new bootstrap.Modal(document.getElementById('newTagModal'), {});
@@ -282,12 +278,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 	addTag.addEventListener('change', () => {
 		// console.log(addTag.selectedIndex);
-		if(addTag.selectedIndex == 1) {
-			newTagModal.show();
+		if (addTag.selectedIndex == 1) {
+			newTagModal.show()
 		}
 	})
-
-
 
 	// focus on input when modal shown
 	document.getElementById('newTagModal').addEventListener('shown.bs.modal', function () {
@@ -297,42 +291,39 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		addTagInput.value = '';
 	})
 
-
-	addTagInput.addEventListener("keyup", (e) => {
+	addTagInput.addEventListener('keyup', (e) => {
 		if (e.target.value.length) {
-			addTagBtn.disabled = false;
+			addTagBtn.disabled = false
 		} else {
-			addTagBtn.disabled = true;
+			addTagBtn.disabled = true
 		}
 	})
 
-	addTagBtn.addEventListener("click", () => {
+	addTagBtn.addEventListener('click', () => {
 		// add to array
-		addNewTagToArray(addTagInput.value);
-		newTagModal.hide();
+		addNewTagToArray(addTagInput.value)
+		newTagModal.hide()
 	})
 
 	cancelAddTag.addEventListener("click", () => { addTag.selectedIndex = 0 });
 
 
 	function addNewTagToArray(newTagName) {
-		console.log(newTagName);
-		const tempArray = taggedVersesObject.map(tag => tag.tagID);
+		console.log(newTagName)
+		const tempArray = taggedVersesObject.map((tag) => tag.tagID)
 		console.log(tempArray)
 
-		var newTagID = Math.max(...tempArray) +1;
+		var newTagID = Math.max(...tempArray) +1
 		console.log(newTagID)
 
 		var newArrayIndexObject = {
 			tagName: newTagName,
 			tagID: newTagID,
-			versesArray: []
+			versesArray: [],
 		}
 
-
-		taggedVersesObject.push(newArrayIndexObject);
-		console.log(taggedVersesObject);
-
+		taggedVersesObject.push(newArrayIndexObject)
+		console.log(taggedVersesObject)
 
 		// remove all dynamically added tag options from selects
 		document.querySelectorAll(".dynamic-select-option").forEach((option) => {
@@ -340,15 +331,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		});
 
 		// add tags back to selects with the new tag
-		taggedVersesObject.forEach(tag => {
-			addTag.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`;
-			tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`;
-		});
+		taggedVersesObject.forEach((tag) => {
+			addTag.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`
+			tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`
+		})
 
 		// set tag select to newly added tag
 
 		// console.log(addTag.length);
-		addTag.selectedIndex = (addTag.length - 1)
+		addTag.selectedIndex = addTag.length - 1
 	}
 
 
@@ -365,33 +356,44 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
+	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
 
-	saveButton.addEventListener("click", function (e) {
-			// console.log(verseForm.checkValidity());
+
+
+
+	saveButton.addEventListener('click', function (e) {
+		// console.log(verseForm.checkValidity());
 		if (verseForm.checkValidity() && addTag.selectedIndex > 1) {
-			e.preventDefault();
+			e.preventDefault()
 
-			let ref = testamentList.value + " " + chapterVerseRef.value;
+			let ref = testamentBookList.value + ' ' + chapterVerseRef.value
 
+			console.log(addTag.selectedOptions[0].dataset.tagId)
+			console.log(addTag.value)
 
-			console.log(addTag.selectedOptions[0].dataset.tagId);
-			console.log(addTag.value);
-
-			console.log(verseText.value);
-			console.log(ref);
-
+			console.log(verseText.value)
+			console.log(ref)
 
 			taggedVersesObject.forEach(function (tagObject) {
 				if(tagObject.tagID == addTag.selectedOptions[0].dataset.tagId){
 					console.log(tagObject);
 					let verseTextRef = {
 						verseRefKey: ref,
-						verseKey: verseText.value
+						verseKey: verseText.value,
 					}
 
 					// update array
-					tagObject.versesArray.push(verseTextRef);
-
+					tagObject.versesArray.push(verseTextRef)
 				}
 			});
 
@@ -400,8 +402,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			localStorage.setItem('taggedVersesObjectKey', JSON.stringify(taggedVersesObject));
 
 		}
-	});
-
-
+	})
 })
 
