@@ -1,4 +1,22 @@
 
+
+
+
+
+	//  https://www.youtube.com/watch?v=ofme2o29ngU
+	//  https://www.youtube.com/watch?v=DZBGEVgL2eE
+	//  https://www.youtube.com/watch?v=ZKwrOXl5TDI
+	//  https://www.youtube.com/watch?v=Co3TTrlG-ok
+	//  https://www.mongodb.com/developer/products/realm/build-ci-cd-pipelines-realm-apps-github-actions/
+
+
+/*
+			DID YOU REMEMBER TO STARTUP MONGO DB FIRST?   admin cmd  'mongod'
+			AND THEN CONNECT....
+
+*/
+
+
 const pickerRef = [
 	{"Genesis": [
 		{"1": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" ]},
@@ -354,19 +372,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			});
 		}());
 
-
-
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
-	//  https://www.youtube.com/watch?v=ofme2o29ngU&t=1481s
 
 
 
