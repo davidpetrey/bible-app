@@ -133,7 +133,7 @@ const pickerRef = [
 ]
 
 document.addEventListener('DOMContentLoaded', (e) => {
-	console.log(e.type)
+	// console.log(e.type)
 
 	const bookListArray = [
 		['Genesis', 'Proverbs', 'Psalms'],
@@ -186,6 +186,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			tagName: 'love',
 			tagID: 1,
 			versesArray: [
+				{
+					book: { "id":"20", "name":"Proverbs" },
+					reference: "1:1-2",
+					text: "The proverbs of Solomon, son of David, king of Israel:"
+				},
 				{
 					verseRefKey: '3:3',
 					verseKey: 'text one',
@@ -240,9 +245,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 	var verseForm = 					document.getElementById("verseForm");
-	var bibleSectionSwitch =	document.getElementById("chooseTest");
-	var testamentBookList = 			document.getElementById("testamentBookList");
-	var chapterVerseRef = 		document.getElementById("chapterVerseRef")
+	var formElTestament =	document.getElementById("chooseTest");
+	var formElBookList = 			document.getElementById("testamentBookList");
+	var formElVerseRef = 		document.getElementById("chapterVerseRef");
+	var formElText = 		document.getElementById("verseText");
+
 	var tagPicker = 					document.getElementById("tagPicker");
 	var addTag = 							document.getElementById("addTag");
 	var addTagInput = 				document.getElementById("addTagInput");
@@ -261,13 +268,13 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 	let setBooksFunction = () => {
 		let addBooksToSelect = (testament) => {
-			testamentBookList.innerHTML = ''
+			formElBookList.innerHTML = ''
 			bookListArray[testament].forEach((book) => {
-				testamentBookList.innerHTML += `<option value"${book}">${book}</option>`
+				formElBookList.innerHTML += `<option value"${book}">${book}</option>`
 			})
 		}
 
-		if (bibleSectionSwitch.checked == true) {
+		if (formElTestament.checked == true) {
 			// console.log("checked")
 			addBooksToSelect(1)
 		} else {
@@ -277,12 +284,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	}
 
 	setBooksFunction()
-	bibleSectionSwitch.addEventListener('change', setBooksFunction)
+	formElTestament.addEventListener('change', setBooksFunction)
 
 	tagPicker.addEventListener('change', (e) => {
 		console.log(e.target.selectedOptions[0].dataset.tagId)
 		console.log(tagPicker.value)
+		// update app state (current tag)
 		appState.currentTagID = e.target.selectedOptions[0].dataset.tagId
+
+		// update verse display
+
+
 	})
 
 	/*
@@ -354,6 +366,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`
 		})
 
+	// set tag to previously set tag
+	tagPicker.selectedIndex = appState.currentTagID
+
+
 		// set tag select to newly added tag
 
 		// console.log(addTag.length);
@@ -381,12 +397,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		if (verseForm.checkValidity() && addTag.selectedIndex > 1) {
 			e.preventDefault()
 
-			let ref = testamentBookList.value + ' ' + chapterVerseRef.value
+			let ref = formElBookList.value + ' ' + formElVerseRef.value
 
 			console.log(addTag.selectedOptions[0].dataset.tagId)
 			console.log(addTag.value)
 
-			console.log(verseText.value)
+			console.log("formElText.value", formElText.value)
 			console.log(ref)
 
 			taggedVersesObject.forEach(function (tagObject) {
@@ -394,7 +410,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 					console.log(tagObject);
 					let verseTextRef = {
 						verseRefKey: ref,
-						verseKey: verseText.value,
+						verseKey: formElText.value,
 					}
 
 					// update array
