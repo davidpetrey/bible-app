@@ -135,6 +135,7 @@ const pickerRef = [
 document.addEventListener('DOMContentLoaded', (e) => {
 	// console.log(e.type)
 
+	// whole OT and NT book lists
 	const bookListArray = [
 		['Genesis', 'Proverbs', 'Psalms'],
 		['1 John', '2 John', '3 John', 'Jude'],
@@ -191,18 +192,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 					reference: "1:1-2",
 					text: "The proverbs of Solomon, son of David, king of Israel:"
 				},
-				{
-					verseRefKey: '3:3',
-					verseKey: 'text one',
-				},
-				{
-					verseRefKey: '12:4-10',
-					verseKey: 'text two',
-				},
-				{
-					verseRefKey: '23:1-25',
-					verseKey: 'text three',
-				},
 			],
 		},
 		{
@@ -212,32 +201,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				{
 					verseRefKey: '1:4',
 					verseKey: 'xtext one',
-				},
-				{
-					verseRefKey: '12:14-30',
-					verseKey: 'xtext two',
-				},
-				{
-					verseRefKey: '3:1-25',
-					verseKey: 'xtext three',
-				},
-			],
-		},
-		{
-			tagName: 'prayer',
-			tagID: 3,
-			versesArray: [
-				{
-					verseRefKey: '1:4',
-					verseKey: 'yxtext one',
-				},
-				{
-					verseRefKey: '12:14-30',
-					verseKey: 'yxtext two',
-				},
-				{
-					verseRefKey: '3:1-25',
-					verseKey: 'yxtext three',
 				},
 			],
 		},
@@ -366,8 +329,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`
 		})
 
-	// set tag to previously set tag
-	tagPicker.selectedIndex = appState.currentTagID
+		// set tag to previously set tag
+		tagPicker.selectedIndex = appState.currentTagID
 
 
 		// set tag select to newly added tag
@@ -424,5 +387,51 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 		}
 	})
+
+
+
+
+
+
+	let appendEntries = () => {
+	}
+
+
+	console.log(JB)
+
+	JB.tags.forEach(item => { tag(item) })
+
+	function tag(arr){
+		console.log(arr.tag_id, arr.tag_name);
+
+		entries(arr.tag_entries)
+		console.log("\n");
+
+	}
+
+
+	function entries(entry){
+		entry.forEach(item => {
+			console.log(item.text, item.book.name, item.reference);
+			console.log("\n");
+		})
+	}
+
+
+
+/*
+<div id="tagEntries">
+
+					<div class="tagEntry mb-4">
+						<div class="text">The proverbs of Solomon, son of David, king of Israel:</div>
+						<span class="book">Proverbs</span>
+						<span class="reference">1:1</span>
+					</div>
+*/
+
+
+
+
+
 })
 
