@@ -1,7 +1,7 @@
 # bible-app
 
-
-saved verses need to be by reference id: book id chapter verse      
+(this is for bible app when bible is included not with user adding)
+saved verses need to be by reference id: book id chapter verse
 
 Proverbs:20 ch: 2 verse:5 - 20 02 05
 
