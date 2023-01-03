@@ -1,20 +1,11 @@
+// @ts-nocheck
+import { vToggleClickEvent, setBooksFunction, saveButtonEvent } from "./addEntry/addNewEntry.js"
+import { newtags } from "./addEntry/addNewTag.js";
 
-
-
-
-
-	//  https://www.youtube.com/watch?v=ofme2o29ngU
-	//  https://www.youtube.com/watch?v=DZBGEVgL2eE
-	//  https://www.youtube.com/watch?v=ZKwrOXl5TDI
-	//  https://www.youtube.com/watch?v=Co3TTrlG-ok
-	//  https://www.mongodb.com/developer/products/realm/build-ci-cd-pipelines-realm-apps-github-actions/
-
-
-/*
-			DID YOU REMEMBER TO STARTUP MONGO DB FIRST?   admin cmd  'mongod'
-			AND THEN CONNECT....
-
-*/
+var elId = function(elementId) {
+	return document.getElementById(elementId);
+};
+window.elId = elId;
 
 
 const pickerRef = [
@@ -132,14 +123,38 @@ const pickerRef = [
 	]}
 ]
 
+var formElTestament;
+var formElBookList;
+
+export var taggedVersesObject = [
+	{
+		tagName: 'love',
+		tagID: 1,
+		versesArray: [
+			{
+				book: { "id":"20", "name":"Proverbs" },
+				reference: "1:1-2",
+				text: "The proverbs of Solomon, son of David, king of Israel:"
+			},
+		],
+	},
+	{
+		tagName: 'faith',
+		tagID: 2,
+		versesArray: [
+			{
+				verseRefKey: '1:4',
+				verseKey: 'xtext one',
+			},
+		],
+	},
+]
+
+
 document.addEventListener('DOMContentLoaded', (e) => {
 	// console.log(e.type)
 
-	// whole OT and NT book lists
-	const bookListArray = [
-		['Genesis', 'Proverbs', 'Psalms'],
-		['1 John', '2 John', '3 John', 'Jude'],
-	]
+
 	/*
 	const pickerRef = [
 		[
@@ -178,47 +193,27 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		]
 	] */
 
-	var appState = {
+	var appTagState = {
 		currentTagID: 2,
 	}
 
-	var taggedVersesObject = [
-		{
-			tagName: 'love',
-			tagID: 1,
-			versesArray: [
-				{
-					book: { "id":"20", "name":"Proverbs" },
-					reference: "1:1-2",
-					text: "The proverbs of Solomon, son of David, king of Israel:"
-				},
-			],
-		},
-		{
-			tagName: 'faith',
-			tagID: 2,
-			versesArray: [
-				{
-					verseRefKey: '1:4',
-					verseKey: 'xtext one',
-				},
-			],
-		},
-	]
 
 
-	var verseForm = 					document.getElementById("verseForm");
-	var formElTestament =	document.getElementById("chooseTest");
-	var formElBookList = 			document.getElementById("testamentBookList");
-	var formElVerseRef = 		document.getElementById("chapterVerseRef");
-	var formElText = 		document.getElementById("verseText");
 
-	var tagPicker = 					document.getElementById("tagPicker");
-	var addTag = 							document.getElementById("addTag");
-	var addTagInput = 				document.getElementById("addTagInput");
-	var addTagBtn = 					document.getElementById("addTagBtn");
-	var cancelAddTag = 				document.getElementById("cancelAddTag");
-	var saveButton = 					document.getElementById("saveButton");
+	var verseForm = 					elId("verseForm");
+	window.formElTestament =	elId("chooseTest");
+	window.formElBookList = 	elId("testamentBookList");
+	window.formElVerseRef = 			elId("chapterVerseRef");
+	window.formElText = 					elId("verseText");
+
+	var tagPicker = 					elId("tagPicker");
+	var addTag = 							elId("addTag");
+	var addTagInput = 				elId("addTagInput");
+	var addTagBtn = 					elId("addTagBtn");
+	var cancelAddTag = 				elId("cancelAddTag");
+	var saveButton = 					elId("saveButton");
+
+
 
 	taggedVersesObject.forEach(tag => {
 		tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value"${tag.tagName}">${tag.tagName}</option>`;
@@ -227,38 +222,27 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 	// set tag to previously set tag
-	tagPicker.selectedIndex = appState.currentTagID
+	tagPicker.selectedIndex = appTagState.currentTagID
 
-	let setBooksFunction = () => {
-		let addBooksToSelect = (testament) => {
-			formElBookList.innerHTML = ''
-			bookListArray[testament].forEach((book) => {
-				formElBookList.innerHTML += `<option value"${book}">${book}</option>`
-			})
-		}
-
-		if (formElTestament.checked == true) {
-			// console.log("checked")
-			addBooksToSelect(1)
-		} else {
-			// console.log("not checked")
-			addBooksToSelect(0)
-		}
-	}
 
 	setBooksFunction()
-	formElTestament.addEventListener('change', setBooksFunction)
+
+	document.getElementById("chooseTest").addEventListener('change', setBooksFunction)
 
 	tagPicker.addEventListener('change', (e) => {
 		console.log(e.target.selectedOptions[0].dataset.tagId)
 		console.log(tagPicker.value)
 		// update app state (current tag)
-		appState.currentTagID = e.target.selectedOptions[0].dataset.tagId
+		appTagState.currentTagID = e.target.selectedOptions[0].dataset.tagId
 
 		// update verse display
 
 
 	})
+
+
+
+
 
 	/*
 	 *	add new tag
@@ -266,8 +250,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 	// initialize modal
 	var newTagModal = new bootstrap.Modal(document.getElementById('newTagModal'), {});
-
-
 
 	addTag.addEventListener('change', () => {
 		// console.log(addTag.selectedIndex);
@@ -330,7 +312,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		})
 
 		// set tag to previously set tag
-		tagPicker.selectedIndex = appState.currentTagID
+		tagPicker.selectedIndex = appTagState.currentTagID
 
 
 		// set tag select to newly added tag
@@ -341,52 +323,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 
-
-		(function(){
-			var addVerseContainerEl = document.getElementById("addVerseContainer");
-
-			document.getElementById("vToggle").addEventListener("click", function () {
-				addVerseContainerEl.classList.toggle('close');
-				this.classList.toggle('close');
-			});
-		}());
-
-
-
-
-
-	saveButton.addEventListener('click', function (e) {
-		// console.log(verseForm.checkValidity());
-		if (verseForm.checkValidity() && addTag.selectedIndex > 1) {
-			e.preventDefault()
-
-			let ref = formElBookList.value + ' ' + formElVerseRef.value
-
-			console.log(addTag.selectedOptions[0].dataset.tagId)
-			console.log(addTag.value)
-
-			console.log("formElText.value", formElText.value)
-			console.log(ref)
-
-			taggedVersesObject.forEach(function (tagObject) {
-				if(tagObject.tagID == addTag.selectedOptions[0].dataset.tagId){
-					console.log(tagObject);
-					let verseTextRef = {
-						verseRefKey: ref,
-						verseKey: formElText.value,
-					}
-
-					// update array
-					tagObject.versesArray.push(verseTextRef)
-				}
-			});
-
-
-			console.log(taggedVersesObject);
-			localStorage.setItem('taggedVersesObjectKey', JSON.stringify(taggedVersesObject));
-
-		}
-	})
+	vToggleClickEvent;
+	saveButtonEvent;
 
 
 
@@ -395,7 +333,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 	let appendEntries = () => {
 	}
-
 
 	console.log(JB)
 
