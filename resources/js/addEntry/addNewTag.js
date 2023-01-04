@@ -65,11 +65,11 @@ export const addNewTags = () => {
 
 		// add tags back to selects with the new tag
 		taggedVersesObject.forEach((tag) => {
-			addTag.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`
 			tagPicker.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`
+			addTag.innerHTML += `<option class="dynamic-select-option" data-tag-id="${tag.tagID}" value="${tag.tagName}">${tag.tagName}</option>`
 		})
 
-	
+
 
 		// set tag to previously set tag
 		// tagPicker.selectedIndex = appTagState.currentTagID

@@ -141,12 +141,23 @@ export var taggedVersesObject = [
 		tagID: 2,
 		versesArray: [
 			{
-				verseRefKey: '1:4',
-				verseKey: 'xtext one',
+				book: { "id":"19", "name":"Psalms" },
+				reference: "51:12",
+				text: "David, king of Israel:"
 			},
 		],
 	},
 ]
+
+
+
+
+
+
+
+
+
+
 
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -194,7 +205,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	var appTagState = {
 		currentTagID: 2,
 	}
-window.appTagState = appTagState;
+	window.appTagState = appTagState;
 
 
 
@@ -262,7 +273,7 @@ window.appTagState = appTagState;
 
 
 
-
+/*
 	let appendEntries = () => {
 	}
 
@@ -285,18 +296,19 @@ window.appTagState = appTagState;
 			console.log("\n");
 		})
 	}
+ */
 
 
-
-/*
-<div id="tagEntries">
+		/*
+				<div id="tagEntries">
 
 					<div class="tagEntry mb-4">
 						<div class="text">The proverbs of Solomon, son of David, king of Israel:</div>
 						<span class="book">Proverbs</span>
 						<span class="reference">1:1</span>
 					</div>
-*/
+				</>
+		*/
 
 
 

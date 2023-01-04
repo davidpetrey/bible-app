@@ -9,16 +9,15 @@ export const vToggleClickEvent = document.getElementById("vToggle").addEventList
 
 // whole OT and NT book lists
 const bookListArray = [
-	['Genesis', 'Proverbs', 'Psalms'],
-	['1 John', '2 John', '3 John', 'Jude'],
-]
+	[ [1, 'Genesis'], [19, 'Psalms'], [20, 'Proverbs'] ],
+	[ [62, '1 John'], [63, '2 John'], [64, '3 John'], [65, 'Jude'] ], ]
 
 export function setBooksFunction() {
 
 	let addBooksToSelect = (testament) => {
 		formElBookList.innerHTML = ''
 		bookListArray[testament].forEach((book) => {
-			formElBookList.innerHTML += `<option value"${book}">${book}</option>`
+			formElBookList.innerHTML += `<option data-num="${book[0]}" value"${book[1]}">${book[1]}</option>`
 		})
 	}
 
@@ -39,21 +38,17 @@ export const saveButtonEvent = saveButton.addEventListener('click', function (e)
 	if (verseForm.checkValidity() && addTag.selectedIndex > 1) {
 		e.preventDefault()
 
-		let ref = formElBookList.value + ' ' + formElVerseRef.value
-
-		console.log(addTag.selectedOptions[0].dataset.tagId)
-		console.log(addTag.value)
-
-		console.log("formElText.value", formElText.value)
-		console.log(ref)
-
 		taggedVersesObject.forEach(function (tagObject) {
+			// match tag id
 			if(tagObject.tagID == addTag.selectedOptions[0].dataset.tagId){
 				console.log(tagObject);
+
 				let verseTextRef = {
-					verseRefKey: ref,
-					verseKey: formElText.value,
+					"book":{"id":formElBookList.selectedOptions[0].dataset.num, "name":formElBookList.value},
+					"reference": formElVerseRef.value,
+					"text": formElText.value,
 				}
+
 
 				// update array
 				tagObject.versesArray.push(verseTextRef)
